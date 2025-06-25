@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --pampas: #f4f2f0;
+  --te-papa-green: #223843;
+  --denim: #185aca;
+  --golden-fizz: #fdec3e;
+  --ming: #3d6282;
+  --slate-gray: #748390;
+}
+
+.theme-light {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.theme-dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
+}
+
+header {
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+#logo-link {
+  border-radius: 12px;
+  background: white;
+}
