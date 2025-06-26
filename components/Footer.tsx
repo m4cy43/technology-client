@@ -1,10 +1,13 @@
+import { FaInstagram } from 'react-icons/fa6';
+import { FaFacebookSquare } from 'react-icons/fa';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-(--ming) py-4 mt-auto">
-      <div className="text-white container mx-auto flex flex-col justify-between px-4">
-        <div className="px-3 flex flex-wrap flex-col md:flex-row justify-around mb-4 md:mb-0">
+    <footer id="contact-us" className="bg-(--ming) py-4 mt-auto">
+      <div className="text-white container mx-auto flex flex-col justify-between px-1 md:px-4">
+        <div className="flex flex-wrap flex-row justify-around mb-4 md:mb-0">
           <div>
             <h2 className="text-lg font-bold text-(--golden-fizz) tracking-[0.8px]">
               Contact us:
@@ -19,9 +22,15 @@ const Footer = () => {
             <h2 className="text-lg font-bold text-(--golden-fizz) tracking-[0.8px]">
               Social media:
             </h2>
-            <ul className="py-3 flex space-x-4 flex-col">
-              <li>insta</li>
-              <li>facebook</li>
+            <ul className="py-3 flex space-x-4 flex-row gap-x-2 justify-evenly items-center">
+              <li>
+                <a href="https://www.instagram.com/">
+                  <FaInstagram className="w-8 h-8" />
+                </a>
+              </li>
+              <li>
+                <FaFacebookSquare className="w-8 h-8" />
+              </li>
             </ul>
           </div>
         </div>

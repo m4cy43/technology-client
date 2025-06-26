@@ -27,11 +27,23 @@ body {
   font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
 }
 
-header {
+/* header {
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-}
+} */
 
 #logo-link {
   border-radius: 12px;
   background: white;
+}
+
+.nav-link-custom {
+  font-weight: 500;
+  color: var(--te-papa-green);
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.nav-link-custom:hover {
+  color: var(--denim);
 }
