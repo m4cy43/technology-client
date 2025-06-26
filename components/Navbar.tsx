@@ -42,16 +42,16 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="relative py-3 px-4 md:px-8 flex flex-row justify-between items-center">
+    <header className="relative flex flex-row items-center justify-between px-4 py-3 md:px-8">
       <div>
         <Link
           id="logo-link"
-          className="w-fit flex items-center"
+          className="flex w-fit items-center"
           aria-label="logo"
           href="/"
         >
           <Image
-            className="h-8 md:h-10 w-auto"
+            className="h-8 w-auto md:h-10"
             src="/logo.png"
             alt="Technology logo"
             width={216}
@@ -77,19 +77,19 @@ const Navbar = () => {
       <div className="flex flex-row items-center gap-x-5">
         <a
           href="#contact-us"
-          className="inline-flex px-2.5 py-2 text-sm md:text-base text-(--te-papa-green) font-[500] bg-transparent border-2 border-(--te-papa-green) rounded-4xl hover:bg-(--denim) transition-colors hover:text-white hover:border-white"
+          className="inline-flex rounded-4xl border-2 border-(--te-papa-green) bg-transparent px-2.5 py-2 text-sm font-[500] text-(--te-papa-green) transition-colors hover:border-white hover:bg-(--denim) hover:text-white md:text-base"
         >
           Contact us
         </a>
         <button
-          className="inline-block md:hidden cursor-pointer"
+          className="inline-block cursor-pointer md:hidden"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
           <span className="sr-only">Open menu</span>
-          <GiHamburgerMenu className="w-9 h-9 text-(--denim)" />
+          <GiHamburgerMenu className="h-9 w-9 text-(--denim)" />
         </button>
       </div>
 
@@ -97,9 +97,9 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="absolute w-3xs h-screen min-h-screen bg-(--slate-gray) top-0 right-0"
+          className="absolute top-0 right-0 h-screen min-h-screen w-3xs bg-(--slate-gray)"
         >
-          <div className="h-full p-4 flex flex-col items-end">
+          <div className="flex h-full flex-col items-end p-4">
             <button
               className="inline-block cursor-pointer"
               type="button"
@@ -108,7 +108,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
               <span className="sr-only">Close menu</span>
-              <IoMdCloseCircleOutline className="w-11 h-11 m-0 text-(--pampas)" />
+              <IoMdCloseCircleOutline className="m-0 h-11 w-11 text-(--pampas)" />
             </button>
 
             <nav className="pt-6.5 pr-5">
