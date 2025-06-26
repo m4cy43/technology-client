@@ -4,16 +4,16 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Navbar = () => {
   return (
-    <header className="py-3 px-4 md:px-8 flex flex-row justify-between items-center">
+    <header className="flex flex-row items-center justify-between px-4 py-3 md:px-8">
       <div>
         <Link
           id="logo-link"
-          className="w-fit flex items-center"
+          className="flex w-fit items-center"
           aria-label="logo"
           href="/"
         >
           <Image
-            className="h-8 md:h-10 w-auto"
+            className="h-8 w-auto md:h-10"
             src="/logo.png"
             alt="Technology logo"
             width={216}
@@ -23,7 +23,7 @@ const Navbar = () => {
       </div>
       <div className="hidden md:inline-block">
         <nav>
-          <ul className="flex row gap-x-10 capitalize">
+          <ul className="row flex gap-x-10 capitalize">
             <li className="nav-link-custom">
               <a href="#about">About us</a>
             </li>
@@ -39,12 +39,12 @@ const Navbar = () => {
       <div className="flex flex-row items-center gap-x-4.5">
         <a
           href="#contact-us"
-          className="font-[500] inline-flex bg-transparent border-2 border-(--te-papa-green) text-(--te-papa-green) px-2.5 py-2 rounded-4xl text-center hover:bg-(--denim) transition-colors hover:text-white hover:border-white"
+          className="inline-flex rounded-4xl border-2 border-(--te-papa-green) bg-transparent px-2.5 py-2 text-center font-[500] text-(--te-papa-green) transition-colors hover:border-white hover:bg-(--denim) hover:text-white"
         >
           Contact us
         </a>
         <div className="inline-block md:hidden">
-          <GiHamburgerMenu className="text-(--denim) text-[2em] cursor-pointer" />
+          <GiHamburgerMenu className="cursor-pointer text-[2em] text-(--denim)" />
         </div>
       </div>
     </header>

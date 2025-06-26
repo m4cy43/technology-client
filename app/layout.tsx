@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`theme-light ${robotoSlab.variable} font-[family-name:var(--font-geist-sans)] antialiased h-full flex flex-col`}
+        className={`theme-light ${robotoSlab.variable} flex h-full flex-col font-[family-name:var(--font-geist-sans)] antialiased`}
       >
         <Navbar />
         <main>{children}</main>
