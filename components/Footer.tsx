@@ -1,12 +1,7 @@
-'use client';
-
 import { FaInstagram } from 'react-icons/fa6';
 import { FaFacebookSquare } from 'react-icons/fa';
-import { useGetMainPageQuery } from '@/store/features/mainPageApi';
 
 const Footer = () => {
-  const { data } = useGetMainPageQuery();
-  console.log(data);
   const currentYear = new Date().getFullYear();
 
   return (
