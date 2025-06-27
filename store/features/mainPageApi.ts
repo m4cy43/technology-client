@@ -1,3 +1,4 @@
+import { StrapiMainPageResponse } from '@/types/strapi';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const mainPageApi = createApi({
@@ -9,7 +10,7 @@ export const mainPageApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getMainPage: builder.query<unknown, void>({
+    getMainPage: builder.query<StrapiMainPageResponse, void>({
       query: () => 'main-page?populate=*',
     }),
   }),
