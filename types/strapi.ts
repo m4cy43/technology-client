@@ -1,16 +1,38 @@
 interface TextNode {
   text: string;
   type: 'text';
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strikethrough?: boolean;
+  code?: boolean;
+}
+
+interface LinkNode {
+  type: 'link';
+  url: string;
+  children: TextNode[];
 }
 
 interface ParagraphContent {
   type: 'paragraph';
+  children: (TextNode | LinkNode)[];
+}
+
+interface HeadingContent {
+  type: 'heading';
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  children: TextNode[];
+}
+
+interface QuoteContent {
+  type: 'quote';
   children: TextNode[];
 }
 
 interface ListItem {
   type: 'list-item';
-  children: TextNode[];
+  children: (TextNode | LinkNode)[];
 }
 
 interface ListContent {
@@ -19,7 +41,11 @@ interface ListContent {
   children: ListItem[];
 }
 
-type BodyContent = ParagraphContent | ListContent;
+type BodyContent =
+  | ParagraphContent
+  | ListContent
+  | HeadingContent
+  | QuoteContent;
 
 interface MediaFormat {
   ext: string;
@@ -123,7 +149,10 @@ export type {
   MediaFormat,
   MediaFormats,
   TextNode,
+  LinkNode,
   ParagraphContent,
+  HeadingContent,
+  QuoteContent,
   ListItem,
   ListContent,
   BodyContent,
