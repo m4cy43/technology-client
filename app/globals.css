@@ -5,10 +5,11 @@
   --foreground: #171717;
   --pampas: #f4f2f0;
   --te-papa-green: #223843;
-  --denim: #185aca;
+  --denim: rgb(24, 90, 202);
   --golden-fizz: #fdec3e;
   --ming: #3d6282;
   --slate-gray: #748390;
+  --hero-bg: rgba(24, 90, 202, 0.2);
 }
 
 .theme-light {
@@ -62,4 +63,32 @@ body {
 
 .nav-link-mobile:hover {
   color: var(--golden-fizz);
+}
+
+#hero-image {
+  height: auto;
+}
+
+@media screen and (min-width: 998.9px) and (max-width: 1238.9px) {
+  #hero-image {
+    width: 500px;
+  }
+}
+
+/* @media screen and (max-width: 1039.9px) {
+  #hero-image {
+    width: 470px;
+  }
+} */
+
+@media screen and (max-width: 841.9px) {
+  .main-title {
+    font-size: 2.75rem;
+  }
+}
+
+@media screen and (max-width: 736.9px) {
+  .main-title {
+    font-size: 2.4rem;
+  }
 }

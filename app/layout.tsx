@@ -10,8 +10,10 @@ const robotoSlab = Roboto_Slab({
 });
 
 export const metadata: Metadata = {
-  title: 'Techonology',
-  description: 'Come up with description later ;)',
+  title:
+    'Technology — Engineering, Construction & Consulting Solutions in Ukraine',
+  description:
+    'Technology offers integrated services in manufacturing, construction, engineering, trade, and business consulting for clients across Ukraine.',
   keywords: 'building, materials',
   icons: {
     icon: '/favicon.ico',
