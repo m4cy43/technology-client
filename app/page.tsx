@@ -2,13 +2,14 @@ import { Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MainContent from '@/components/MainContent';
+import Spinner from '@/components/ui/Spinner';
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <main>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Spinner />}>
           <MainContent />
         </Suspense>
       </main>
