@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Roboto_Slab } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { StoreProvider } from '@/store/StoreProvider';
 
 const robotoSlab = Roboto_Slab({
@@ -34,11 +32,7 @@ export default function RootLayout({
       <body
         className={`theme-light ${robotoSlab.variable} flex h-full flex-col font-[family-name:var(--font-geist-sans)] antialiased`}
       >
-        <StoreProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );
