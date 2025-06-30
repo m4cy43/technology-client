@@ -3,7 +3,6 @@
 import Hero from '@/components/Hero';
 import { useGetMainPageQuery } from '@/store/features/mainPageApi';
 import Spinner from './ui/Spinner';
-import { Service } from '@/types/strapi';
 
 const MainContent = () => {
   const { data, isLoading } = useGetMainPageQuery();
@@ -17,11 +16,11 @@ const MainContent = () => {
 
   const {
     data: { title, hero, aboutUs, whatWeDo, whyChooseUs, closing },
-  } = data;
+  } = data!;
 
   return (
     <>
-      <Hero {...(hero as Service)} />
+      <Hero title={hero.title} content={hero.content} image={hero.image} />
     </>
   );
 };

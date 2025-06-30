@@ -56,7 +56,7 @@ export const buildStrapiQuery = (
 export const mainPageApi = createApi({
   reducerPath: 'mainPageApiWithHelper',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_STRAPI_HOST,
+    baseUrl: `${process.env.NEXT_PUBLIC_STRAPI_HOST}/api`,
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
     },
