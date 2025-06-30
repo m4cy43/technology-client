@@ -56,7 +56,7 @@ export const buildStrapiQuery = (
 export const mainPageApi = createApi({
   reducerPath: 'mainPageApiWithHelper',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_STRAPI_HOST,
+    baseUrl: `${process.env.NEXT_PUBLIC_STRAPI_HOST}/api`,
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
     },
@@ -64,24 +64,13 @@ export const mainPageApi = createApi({
   endpoints: (builder) => ({
     getMainPage: builder.query<StrapiMainPageResponse, void>({
       query: () => {
-        console.log(
-          buildStrapiQuery('main-page', {
-            populate: [
-              'hero',
-              'aboutUs.images',
-              'whatWeDo.images',
-              'whyChooseUs.images',
-              'closing.images',
-            ],
-          })
-        );
         return buildStrapiQuery('main-page', {
           populate: [
-            'hero',
-            'aboutUs.images',
-            'whatWeDo.images',
-            'whyChooseUs.images',
-            'closing.images',
+            'hero.image',
+            'aboutUs.image',
+            'whatWeDo.image',
+            'whyChooseUs.image',
+            'closing.image',
           ],
         });
       },

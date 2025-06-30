@@ -41,11 +41,7 @@ interface ListContent {
   children: ListItem[];
 }
 
-type BodyContent =
-  | ParagraphContent
-  | ListContent
-  | HeadingContent
-  | QuoteContent;
+type Content = ParagraphContent | ListContent | HeadingContent | QuoteContent;
 
 interface MediaFormat {
   ext: string;
@@ -89,32 +85,11 @@ interface StrapiMedia {
   publishedAt: string;
 }
 
-interface AboutUsSection {
+interface Service {
   id: number;
   title: string;
-  body: BodyContent[];
-  images: StrapiMedia | null;
-}
-
-interface WhatWeDoSection {
-  id: number;
-  title: string;
-  body: BodyContent[];
-  images: StrapiMedia | null;
-}
-
-interface WhyChooseUsSection {
-  id: number;
-  title: string;
-  body: BodyContent[];
-  images: StrapiMedia | null;
-}
-
-interface ClosingSection {
-  id: number;
-  title: string;
-  body: BodyContent[];
-  images?: StrapiMedia | null;
+  content: Content[];
+  image: StrapiMedia | null;
 }
 
 interface MainPageData {
@@ -124,25 +99,17 @@ interface MainPageData {
   updatedAt: string;
   publishedAt: string;
   title: string;
-  hero: StrapiMedia | null;
-  aboutUs: AboutUsSection;
-  whatWeDo: WhatWeDoSection[];
-  whyChooseUs: WhyChooseUsSection;
-  closing: ClosingSection;
+  hero: Service;
+  aboutUs: Service;
+  whatWeDo: Service[];
+  whyChooseUs: Service;
+  closing: Service;
 }
 
 interface StrapiMainPageResponse {
   data: MainPageData;
   meta: Record<string, unknown>;
 }
-
-type SectionWithImages =
-  | AboutUsSection
-  | (WhatWeDoSection & { images: StrapiMedia });
-type SectionWithOptionalImages =
-  | WhatWeDoSection
-  | WhyChooseUsSection
-  | ClosingSection;
 
 export type {
   StrapiMedia,
@@ -155,13 +122,8 @@ export type {
   QuoteContent,
   ListItem,
   ListContent,
-  BodyContent,
-  AboutUsSection,
-  WhatWeDoSection,
-  WhyChooseUsSection,
-  ClosingSection,
+  Service,
+  Content,
   MainPageData,
   StrapiMainPageResponse,
-  SectionWithImages,
-  SectionWithOptionalImages,
 };
