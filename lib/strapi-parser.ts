@@ -26,6 +26,8 @@ interface ImageOptions {
   lazyLoading?: boolean;
   className?: string;
   baseUrl?: string;
+  preferredWidth?: number;
+  preferredHigh?: number;
 }
 
 /**
@@ -114,20 +116,22 @@ function contentToHtml(content: Content): string {
 /**
  * Converts StrapiMedia to HTML image element
  */
-function mediaToHtml(media: StrapiMedia, options: ImageOptions = {}): string {
+function mediaToHtml(media: StrapiMedia, options: ImageOptions): string {
   const {
-    preferredSize = 'medium',
+    preferredSize = 'original',
     includeCaption = true,
     includeFigure = true,
     lazyLoading = true,
     className = '',
-    baseUrl = '',
+    baseUrl,
+    preferredWidth,
+    preferredHigh,
   } = options;
 
   // Determine the best image source
   let imageUrl = media.url;
-  let width = media.width;
-  let height = media.height;
+  let width = preferredWidth || media.width;
+  let height = preferredHigh || media.height;
 
   // Try to get preferred size format
   if (media.formats && preferredSize !== 'original') {
@@ -179,14 +183,14 @@ function mediaToHtml(media: StrapiMedia, options: ImageOptions = {}): string {
  */
 function mediaToResponsiveHtml(
   media: StrapiMedia,
-  options: ImageOptions = {}
+  options: ImageOptions
 ): string {
   const {
     includeCaption = true,
     includeFigure = true,
     lazyLoading = true,
     className = '',
-    baseUrl = '',
+    baseUrl,
   } = options;
 
   if (!media.formats) {
@@ -254,22 +258,20 @@ function mediaToResponsiveHtml(
   return imgTag;
 }
 
+function parseRichText(content: Content[]) {
+  return content.map((content) => contentToHtml(content)).join('');
+}
+
 /**
  * Converts a Service block to HTML with image
  */
 function serviceToHtml(
   service: Service,
-  imageOptions: ImageOptions = { baseUrl: process.env.NEXT_PUBLIC_STRAPI_HOST }
+  imageOptions: ImageOptions
 ): ParsedBlock {
-  console.log(service.content);
-  const htmlContent = service.content
-    .map((content) => contentToHtml(content))
-    .join('');
+  const htmlContent = parseRichText(service.content);
 
-  let image: string = '';
-  if (service.image) {
-    image = mediaToResponsiveHtml(service.image, imageOptions);
-  }
+  const image = mediaToResponsiveHtml(service.image!, imageOptions);
 
   return {
     title: service.title,
@@ -351,6 +353,7 @@ export {
   mediaToHtml,
   mediaToResponsiveHtml,
   escapeHtml,
+  parseRichText,
 };
 
 export type { ParsedBlock, ParsedMainPage, ImageOptions };

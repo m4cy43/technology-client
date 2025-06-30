@@ -15,12 +15,17 @@ const MainContent = () => {
     );
 
   const {
-    data: { title, hero, aboutUs, whatWeDo, whyChooseUs, closing },
+    data: { hero },
   } = data!;
 
   return (
     <>
-      <Hero title={hero.title} content={hero.content} image={hero.image} />
+      <Hero
+        title={hero.title}
+        content={hero.content}
+        image={hero.image}
+        id={hero.id}
+      />
     </>
   );
 };
