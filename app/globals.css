@@ -160,6 +160,11 @@ body {
     transform: none;
   }
 
+  .hero-title-block {
+    height: fit-content;
+    padding-bottom: 38px;
+  }
+
   .main-title {
     font-size: 2.4rem;
   }
