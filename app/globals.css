@@ -36,6 +36,7 @@ body {
 #mobile-menu {
   border-radius: 30px 0 0 30px;
   box-shadow: -4px 0 5px rgba(0, 0, 0, 0.4);
+  z-index: 99;
 }
 
 .nav-link {
@@ -67,19 +68,71 @@ body {
 
 #hero-image {
   height: auto;
+  width: 70%;
+  position: absolute;
+  transform: translateY(-270px);
 }
 
-@media screen and (min-width: 998.9px) and (max-width: 1238.9px) {
+@media screen and (min-width: 1920.9px) {
   #hero-image {
-    width: 500px;
+    width: 700px;
+    min-width: 700px;
   }
 }
 
-/* @media screen and (max-width: 1039.9px) {
+@media screen and (min-width: 1160px) {
   #hero-image {
-    width: 470px;
+    width: 615px;
+    min-width: 615px;
   }
-} */
+}
+
+@media screen and (min-width: 1120px) and (max-width: 1159.9px) {
+  #hero-image {
+    width: 550px;
+    min-width: 550px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1119.9px) {
+  #hero-image {
+    width: 425px;
+    min-width: 425px;
+    transform: translateY(-150px);
+  }
+}
+
+@media screen and (min-width: 899px) and (max-width: 991.9px) {
+  #hero-image {
+    width: 420px;
+    min-width: 420px;
+    transform: translateY(-40px);
+  }
+}
+
+@media screen and (min-width: 830px) and (max-width: 898.9px) {
+  #hero-image {
+    width: 370px;
+    min-width: 370px;
+    transform: translateY(-20px);
+  }
+}
+
+.hero-title-block {
+  width: 60%;
+}
+
+@media screen and (max-width: 1119.9px) {
+  .hero-title-block {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 971.1px) {
+  .hero-title-block {
+    width: 90%;
+  }
+}
 
 @media screen and (max-width: 841.9px) {
   .main-title {
@@ -87,8 +140,39 @@ body {
   }
 }
 
-@media screen and (max-width: 736.9px) {
+@media screen and (max-width: 829.9px) {
+  .hero-media-block {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+
+  .hero-media-block > div {
+    width: 100%;
+  }
+
+  .hero-image-wrapper {
+    align-items: center;
+  }
+
+  #hero-image {
+    width: 320px;
+    position: relative;
+    transform: none;
+  }
+
   .main-title {
     font-size: 2.4rem;
+  }
+}
+
+@media screen and (max-width: 654px) {
+  .main-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 408px) {
+  .main-title {
+    font-size: 1.8rem;
   }
 }
