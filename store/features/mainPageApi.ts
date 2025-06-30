@@ -64,24 +64,13 @@ export const mainPageApi = createApi({
   endpoints: (builder) => ({
     getMainPage: builder.query<StrapiMainPageResponse, void>({
       query: () => {
-        console.log(
-          buildStrapiQuery('main-page', {
-            populate: [
-              'hero',
-              'aboutUs.images',
-              'whatWeDo.images',
-              'whyChooseUs.images',
-              'closing.images',
-            ],
-          })
-        );
         return buildStrapiQuery('main-page', {
           populate: [
-            'hero',
-            'aboutUs.images',
-            'whatWeDo.images',
-            'whyChooseUs.images',
-            'closing.images',
+            'hero.image',
+            'aboutUs.image',
+            'whatWeDo.image',
+            'whyChooseUs.image',
+            'closing.image',
           ],
         });
       },
