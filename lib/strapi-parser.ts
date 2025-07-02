@@ -25,6 +25,7 @@ interface ImageOptions {
   includeFigure?: boolean;
   lazyLoading?: boolean;
   className?: string;
+  id?: string;
   baseUrl?: string;
   preferredWidth?: number;
   preferredHigh?: number;
@@ -123,6 +124,7 @@ function mediaToHtml(media: StrapiMedia, options: ImageOptions): string {
     includeFigure = true,
     lazyLoading = true,
     className = '',
+    id = '',
     baseUrl,
     preferredWidth,
     preferredHigh,
@@ -162,6 +164,10 @@ function mediaToHtml(media: StrapiMedia, options: ImageOptions): string {
     imgAttributes.push(`class="${escapeHtml(className)}"`);
   }
 
+  if (id) {
+    imgAttributes.push(`id="${escapeHtml(id)}"`);
+  }
+
   const imgTag = `<img ${imgAttributes.join(' ')} />`;
 
   // Wrap in figure if requested
@@ -190,6 +196,7 @@ function mediaToResponsiveHtml(
     includeFigure = true,
     lazyLoading = true,
     className = '',
+    id = '',
     baseUrl,
   } = options;
 
@@ -241,6 +248,10 @@ function mediaToResponsiveHtml(
 
   if (className) {
     imgAttributes.push(`class="${escapeHtml(className)}"`);
+  }
+
+  if (id) {
+    imgAttributes.push(`id="${escapeHtml(id)}"`);
   }
 
   const imgTag = `<img ${imgAttributes.join(' ')} />`;
