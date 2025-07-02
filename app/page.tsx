@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="flex flex-col">
         <Suspense fallback={<Spinner />}>
           <MainContent />
         </Suspense>
