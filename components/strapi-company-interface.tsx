@@ -95,7 +95,7 @@ const CompanyInterface = () => {
     //   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <>
       {/* About Us Section */}
-      <section className="mb-16">
+      {/* <section className="mb-16">
         <div className="rounded-2xl bg-white p-8 shadow-xl">
           <h2 className="mb-6 text-center text-3xl font-bold text-gray-900">
             {data.aboutUs.title}
@@ -106,7 +106,7 @@ const CompanyInterface = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* What We Do Section */}
       <section className="mb-16">

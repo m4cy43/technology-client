@@ -9,7 +9,7 @@ const Hero: React.FC<Service> = ({ title, content, image }) => {
   const htmlContent = parseRichText(content);
 
   return (
-    <div className="p-4 md:p-10">
+    <div className="px-4 py-5 md:px-10 md:py-15">
       <div className="hero-title-block h-60 w-[60%] pt-4 pb-4 pl-6 lg:pt-7">
         <h1 className="main-title text-5xl leading-[1.5em] font-semibold">
           {title}

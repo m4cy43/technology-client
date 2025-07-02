@@ -1,6 +1,7 @@
 'use client';
 
 import Hero from '@/components/Hero';
+import AboutUs from '@/components/AboutUs';
 import { useGetMainPageQuery } from '@/store/features/mainPageApi';
 import Spinner from './ui/Spinner';
 
@@ -28,7 +29,8 @@ const MainContent = () => {
         image={hero.image}
         id={hero.id}
       />
-      <div className="background-gradient mt-22 mb-10 px-10 py-26">
+      <div className="background-gradient my-8 px-10 py-26">
+        <AboutUs />
         <CompanyInterface />
       </div>
     </>
