@@ -3,7 +3,13 @@ import { Service } from '@/types/strapi';
 import Image from 'next/image';
 import React from 'react';
 
-const Hero: React.FC<Service> = ({ title, content, image }) => {
+interface Props {
+  data: Service;
+}
+
+const Hero: React.FC<Props> = ({ data }) => {
+  const { title, content, image } = data;
+
   const imgHost = process.env.NEXT_PUBLIC_STRAPI_HOST;
 
   const htmlContent = parseRichText(content);

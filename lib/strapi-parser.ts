@@ -31,6 +31,30 @@ interface ImageOptions {
   preferredHigh?: number;
 }
 
+interface SimpleParagraph {
+  type: 'paragraph';
+  text: string;
+}
+
+interface SimpleList {
+  type: 'list';
+  format: 'ordered' | 'unordered';
+  items: string[];
+}
+
+type SimpleContent = SimpleParagraph | SimpleList;
+
+interface SimpleBlock {
+  title: string;
+  content: SimpleContent[];
+  image: StrapiMedia | null;
+}
+
+interface SimpleMainPage {
+  pageTitle: string;
+  blocks: SimpleBlock[];
+}
+
 /**
  * Converts a TextNode to HTML with formatting
  */
@@ -282,7 +306,9 @@ function serviceToHtml(
 ): ParsedBlock {
   const htmlContent = parseRichText(service.content);
 
-  const image = mediaToResponsiveHtml(service.image!, imageOptions);
+  const image = service.image
+    ? mediaToResponsiveHtml(service.image, imageOptions)
+    : '';
 
   return {
     title: service.title,
@@ -337,6 +363,114 @@ function parseMainPageToHtml(
 }
 
 /**
+ * Extracts plain text from TextNode or LinkNode (ignoring formatting)
+ */
+function extractPlainText(node: TextNode | LinkNode): string {
+  if (node.type === 'text') {
+    return node.text;
+  } else if (node.type === 'link') {
+    return node.children.map((child) => child.text).join('');
+  }
+  return '';
+}
+
+/**
+ * Extracts plain text from list item
+ */
+function extractListItemText(item: ListItem): string {
+  return item.children.map((child) => extractPlainText(child)).join('');
+}
+
+/**
+ * Converts rich content to simple content structure
+ */
+function contentToSimple(content: Content): SimpleContent | null {
+  switch (content.type) {
+    case 'paragraph':
+      const paragraphText = content.children
+        .map((child) => extractPlainText(child))
+        .join('');
+
+      return {
+        type: 'paragraph',
+        text: paragraphText,
+      };
+
+    case 'list':
+      const listItems = content.children
+        .map((item) => extractListItemText(item))
+        .filter((text) => text.trim().length > 0);
+
+      return {
+        type: 'list',
+        format: content.format,
+        items: listItems,
+      };
+
+    // Skip headings, quotes, and other content types for simplicity
+    default:
+      return null;
+  }
+}
+
+/**
+ * Converts a Service block to simple structure
+ */
+function serviceToSimple(service: Service): SimpleBlock {
+  const simpleContent = service.content
+    .map((content) => contentToSimple(content))
+    .filter((content): content is SimpleContent => content !== null);
+
+  return {
+    title: service.title,
+    content: simpleContent,
+    image: service.image,
+  };
+}
+
+/**
+ * Parses the main page data to simple structure
+ */
+function parseMainPageToSimple(
+  response: StrapiMainPageResponse
+): SimpleMainPage {
+  const { data } = response;
+  const blocks: SimpleBlock[] = [];
+
+  // Parse hero section
+  if (data.hero) {
+    blocks.push(serviceToSimple(data.hero));
+  }
+
+  // Parse aboutUs section
+  if (data.aboutUs) {
+    blocks.push(serviceToSimple(data.aboutUs));
+  }
+
+  // Parse whatWeDo sections
+  if (data.whatWeDo && data.whatWeDo.length > 0) {
+    data.whatWeDo.forEach((service) => {
+      blocks.push(serviceToSimple(service));
+    });
+  }
+
+  // Parse whyChooseUs section
+  if (data.whyChooseUs) {
+    blocks.push(serviceToSimple(data.whyChooseUs));
+  }
+
+  // Parse closing section
+  if (data.closing) {
+    blocks.push(serviceToSimple(data.closing));
+  }
+
+  return {
+    pageTitle: data.title,
+    blocks: blocks.filter((block) => block.content.length > 0 || block.image),
+  };
+}
+
+/**
  * Utility function to escape HTML characters
  */
 function escapeHtml(text: string): string {
@@ -356,6 +490,7 @@ function escapeHtml(text: string): string {
 }
 
 export {
+  // HTML parsing functions
   parseMainPageToHtml,
   serviceToHtml,
   contentToHtml,
@@ -363,8 +498,22 @@ export {
   linkNodeToHtml,
   mediaToHtml,
   mediaToResponsiveHtml,
-  escapeHtml,
   parseRichText,
+  escapeHtml,
+  parseMainPageToSimple,
+  serviceToSimple,
+  contentToSimple,
+  extractPlainText,
+  extractListItemText,
 };
 
-export type { ParsedBlock, ParsedMainPage, ImageOptions };
+export type {
+  ParsedBlock,
+  ParsedMainPage,
+  ImageOptions,
+  SimpleBlock,
+  SimpleMainPage,
+  SimpleContent,
+  SimpleParagraph,
+  SimpleList,
+};
