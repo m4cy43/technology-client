@@ -413,13 +413,17 @@ function contentToSimple(content: Content): SimpleContent | null {
   }
 }
 
+function parseSimpleRichText(content: Content[]) {
+  return content
+    .map((content) => contentToSimple(content))
+    .filter((content): content is SimpleContent => content !== null);
+}
+
 /**
  * Converts a Service block to simple structure
  */
 function serviceToSimple(service: Service): SimpleBlock {
-  const simpleContent = service.content
-    .map((content) => contentToSimple(content))
-    .filter((content): content is SimpleContent => content !== null);
+  const simpleContent = parseSimpleRichText(service.content);
 
   return {
     title: service.title,
@@ -499,6 +503,7 @@ export {
   mediaToHtml,
   mediaToResponsiveHtml,
   parseRichText,
+  parseSimpleRichText,
   escapeHtml,
   parseMainPageToSimple,
   serviceToSimple,
