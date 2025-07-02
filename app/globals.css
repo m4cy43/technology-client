@@ -6,6 +6,7 @@
   --pampas: #f4f2f0;
   --te-papa-green: #223843;
   --denim: rgb(24, 90, 202);
+  --mobile-menu: rgb(73, 107, 165);
   --golden-fizz: #fdec3e;
   --ming: #3d6282;
   --slate-gray: #748390;
@@ -22,10 +23,19 @@
   --foreground: #ededed;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--golden-fizz) var(--mobile-menu);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
+}
+
+section {
+  scroll-margin-top: 30px;
 }
 
 #logo-link {
@@ -68,53 +78,37 @@ body {
 
 #hero-image {
   height: auto;
-  width: 70%;
-  position: absolute;
-  transform: translateY(-270px);
+  width: 100%;
+  transform: translateY(calc(-30%));
 }
 
-@media screen and (min-width: 1920.9px) {
+@media screen and (min-width: 1735px) {
   #hero-image {
-    width: 700px;
-    min-width: 700px;
+    transform: translateY(calc(-40%));
   }
 }
 
-@media screen and (min-width: 1160px) {
+@media screen and (min-width: 1490px) and (max-width: 1734.9px) {
   #hero-image {
-    width: 615px;
-    min-width: 615px;
+    transform: translateY(calc(-30%));
   }
 }
 
-@media screen and (min-width: 1120px) and (max-width: 1159.9px) {
+@media screen and (min-width: 1190px) and (max-width: 1489.9px) {
   #hero-image {
-    width: 550px;
-    min-width: 550px;
+    transform: translateY(calc(-20%));
   }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1119.9px) {
+@media screen and (min-width: 1000px) and (max-width: 1189.9px) {
   #hero-image {
-    width: 425px;
-    min-width: 425px;
-    transform: translateY(-150px);
+    transform: translateY(calc(-10%));
   }
 }
 
-@media screen and (min-width: 899px) and (max-width: 991.9px) {
+@media screen and (min-width: 830px) and (max-width: 999.9px) {
   #hero-image {
-    width: 420px;
-    min-width: 420px;
-    transform: translateY(-40px);
-  }
-}
-
-@media screen and (min-width: 830px) and (max-width: 898.9px) {
-  #hero-image {
-    width: 370px;
-    min-width: 370px;
-    transform: translateY(-20px);
+    transform: translateY(calc(5%));
   }
 }
 
@@ -152,10 +146,12 @@ body {
 
   .hero-image-wrapper {
     align-items: center;
+    margin-bottom: 14px;
   }
 
   #hero-image {
-    width: 320px;
+    width: 80%;
+    min-width: 340px;
     position: relative;
     transform: none;
   }
@@ -186,8 +182,8 @@ body {
   background: linear-gradient(
     to bottom,
     rgba(239, 246, 255, 0) 0px,
-    rgba(239, 246, 255, 1) 120px,
-    rgba(239, 246, 255, 1) calc(100% - 120px),
+    rgb(236, 244, 255) 120px,
+    rgba(236, 244, 255) calc(100% - 120px),
     rgba(239, 246, 255, 0) 100%
   );
 }

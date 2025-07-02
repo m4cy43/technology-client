@@ -17,10 +17,10 @@ const Hero: React.FC<Service> = ({ title, content, image }) => {
       </div>
       <div className="hero-media-block flex h-[400px] flex-col rounded-3xl bg-(--hero-bg) px-5 py-6 md:flex-row">
         <div
-          className="w-[50%] text-xl leading-[1.6em]"
+          className="w-[50%] text-xl leading-[1.6em] lg:pt-6"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         ></div>
-        <div className="hero-image-wrapper relative flex w-[50%] items-start justify-center">
+        <div className="hero-image-wrapper relative flex w-[50%] items-center justify-center md:items-start md:justify-end">
           <Image
             id="hero-image"
             src={`${imgHost}${image?.url}`}
