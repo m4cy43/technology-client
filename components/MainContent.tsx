@@ -19,7 +19,7 @@ const MainContent = () => {
     );
 
   const {
-    data: { hero },
+    data: { hero, aboutUs },
   } = data!;
 
   return (
@@ -31,7 +31,12 @@ const MainContent = () => {
         id={hero.id}
       />
       <div className="background-gradient px-4 py-26 md:px-10">
-        <AboutUs />
+        <AboutUs
+          title={aboutUs.title}
+          content={aboutUs.content}
+          image={aboutUs.image}
+          id={aboutUs.id}
+        />
         <WhatWeDo />
         <WhyChooseUs />
         <Closing />
