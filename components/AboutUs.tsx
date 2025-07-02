@@ -13,7 +13,10 @@ const data = {
 
 const AboutUs = () => {
   return (
-    <section className="mb-16 flex flex-col items-center justify-center md:flex-row">
+    <section
+      id="about"
+      className="mb-22 flex flex-col items-center justify-center md:flex-row"
+    >
       <div className="h-fit w-full rounded-2xl bg-white p-8 shadow-xl md:w-[60%]">
         <h2 className="mb-6 text-center text-3xl font-bold text-gray-900">
           {data.aboutUs.title}
