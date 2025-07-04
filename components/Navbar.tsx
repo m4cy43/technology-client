@@ -97,7 +97,7 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="absolute top-0 right-0 h-screen min-h-screen w-3xs bg-(--mobile-menu)"
+          className="fixed top-0 z-99 h-full w-full bg-(--mobile-menu)"
         >
           <div className="flex h-full flex-col items-end p-4">
             <button
