@@ -1,4 +1,4 @@
-import { StrapiMainPageResponse } from '@/types/strapi';
+import { StrapiCompanyResponse, StrapiMainPageResponse } from '@/types/strapi';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const buildStrapiQuery = (
@@ -53,8 +53,8 @@ export const buildStrapiQuery = (
   return `${endpoint}?${params.toString()}`;
 };
 
-export const mainPageApi = createApi({
-  reducerPath: 'mainPageApiWithHelper',
+export const strapiApi = createApi({
+  reducerPath: 'strapiApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_STRAPI_HOST}/api`,
     headers: {
@@ -75,7 +75,14 @@ export const mainPageApi = createApi({
         });
       },
     }),
+    getGlobalData: builder.query<StrapiCompanyResponse, void>({
+      query: () => {
+        return buildStrapiQuery('global', {
+          populate: '*',
+        });
+      },
+    }),
   }),
 });
 
-export const { useGetMainPageQuery } = mainPageApi;
+export const { useGetMainPageQuery, useGetGlobalDataQuery } = strapiApi;

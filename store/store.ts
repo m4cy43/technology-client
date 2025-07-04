@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { mainPageApi } from './features/mainPageApi';
+import { strapiApi } from './features/mainPageApi';
 
 export const createStore = () => {
   return configureStore({
     reducer: {
-      [mainPageApi.reducerPath]: mainPageApi.reducer,
+      [strapiApi.reducerPath]: strapiApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(mainPageApi.middleware);
+      return getDefaultMiddleware().concat(strapiApi.middleware);
     },
   });
 };

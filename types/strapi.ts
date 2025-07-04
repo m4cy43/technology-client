@@ -54,6 +54,7 @@ interface MediaFormat {
   width: number;
   height: number;
   sizeInBytes: number;
+  provider_metadata: StrapiImageProviderMetadata;
 }
 
 interface MediaFormats {
@@ -69,8 +70,8 @@ interface StrapiMedia {
   name: string;
   alternativeText: string | null;
   caption: string | null;
-  width: number;
-  height: number;
+  width: number | null;
+  height: number | null;
   formats: MediaFormats | null;
   hash: string;
   ext: string;
@@ -79,7 +80,7 @@ interface StrapiMedia {
   url: string;
   previewUrl: string | null;
   provider: string;
-  provider_metadata: unknown | null;
+  provider_metadata: StrapiImageProviderMetadata | null;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
@@ -110,8 +111,39 @@ interface StrapiMainPageResponse {
   data: MainPageData;
   meta: Record<string, unknown>;
 }
+interface StrapiImageProviderMetadata {
+  public_id: string;
+  resource_type: string;
+}
+
+interface CompanyData {
+  id: number;
+  documentId: string;
+  siteName: string;
+  siteDescription: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  email: string;
+  phone: string;
+  phone2: string;
+  address: string;
+  addressLink: string;
+  telegram: string | null;
+  instagram: string | null;
+  facebook: string | null;
+  favicon: StrapiMedia | null;
+  logo: StrapiMedia | null;
+  defaultSeo: unknown | null;
+}
+
+interface StrapiCompanyResponse {
+  data: CompanyData;
+  meta: Record<string, unknown>;
+}
 
 export type {
+  // Main page
   StrapiMedia,
   MediaFormat,
   MediaFormats,
@@ -126,4 +158,8 @@ export type {
   Content,
   MainPageData,
   StrapiMainPageResponse,
+  // Global
+  StrapiImageProviderMetadata,
+  CompanyData,
+  StrapiCompanyResponse,
 };

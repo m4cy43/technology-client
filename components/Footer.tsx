@@ -1,10 +1,23 @@
+'use client';
+
 import { FaFacebookSquare, FaPhone, FaInstagram } from 'react-icons/fa';
 import { MdOutlineMail } from 'react-icons/md';
 import { FiMapPin } from 'react-icons/fi';
+import { useGetGlobalDataQuery } from '@/store/features/mainPageApi';
 
 const Footer = () => {
   const listElementStyles = 'flex flex-row items-center';
   const currentYear = new Date().getFullYear();
+
+  const { data, isLoading } = useGetGlobalDataQuery();
+
+  if (isLoading) {
+    return <></>;
+  }
+
+  const {
+    data: { email, phone, phone2, instagram, facebook, address, addressLink },
+  } = data!;
 
   return (
     <footer id="contact-us" className="mt-auto bg-(--ming) py-4">
@@ -17,20 +30,22 @@ const Footer = () => {
             <ul className="flex flex-col gap-y-2 py-3">
               <li className={listElementStyles}>
                 <FaPhone className="mr-2.5" />
-                +3800000000
+                {phone || phone2 || '+380000000000'}
               </li>
               <li className={listElementStyles}>
                 <MdOutlineMail className="mr-2.5" />
-                user@gmail.com
+                {email || 'example@gmail.com'}
               </li>
               <li className={listElementStyles}>
                 <FiMapPin className="mr-2.5" />
                 <a
-                  href="https://maps.app.goo.gl/vRLQTbnhWwefz4Uu6"
+                  href={
+                    addressLink || 'https://maps.app.goo.gl/vRLQTbnhWwefz4Uu6'
+                  }
                   target="_blank"
                   className="hover:text-(--golden-fizz)"
                 >
-                  Address
+                  {address || 'Address'}
                 </a>
               </li>
             </ul>
@@ -41,12 +56,12 @@ const Footer = () => {
             </h2>
             <ul className="flex flex-row items-center justify-evenly gap-x-2 space-x-4 py-3">
               <li>
-                <a href="https://www.instagram.com/">
+                <a href={instagram || 'https://www.instagram.com/'}>
                   <FaInstagram className="h-8 w-8" />
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/">
+                <a href={facebook || 'https://www.facebook.com/'}>
                   <FaFacebookSquare className="h-8 w-8" />
                 </a>
               </li>
