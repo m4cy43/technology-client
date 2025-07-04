@@ -19,26 +19,16 @@ const MainContent = () => {
     );
 
   const {
-    data: { hero, aboutUs },
+    data: { hero, aboutUs, whatWeDo, whyChooseUs },
   } = data!;
 
   return (
     <>
-      <Hero
-        title={hero.title}
-        content={hero.content}
-        image={hero.image}
-        id={hero.id}
-      />
+      <Hero data={hero} />
       <div className="background-gradient px-4 py-26 md:px-10">
-        <AboutUs
-          title={aboutUs.title}
-          content={aboutUs.content}
-          image={aboutUs.image}
-          id={aboutUs.id}
-        />
-        <WhatWeDo />
-        <WhyChooseUs />
+        <AboutUs data={aboutUs} />
+        <WhatWeDo data={whatWeDo} />
+        <WhyChooseUs data={whyChooseUs} />
         <Closing />
       </div>
     </>

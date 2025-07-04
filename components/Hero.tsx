@@ -1,12 +1,16 @@
-import { parseRichText } from '@/lib/strapi-parser';
+import { parseSimpleRichText } from '@/lib/strapi-parser';
 import { Service } from '@/types/strapi';
 import Image from 'next/image';
 import React from 'react';
 
-const Hero: React.FC<Service> = ({ title, content, image }) => {
-  const imgHost = process.env.NEXT_PUBLIC_STRAPI_HOST;
+interface Props {
+  data: Service;
+}
 
-  const htmlContent = parseRichText(content);
+const Hero: React.FC<Props> = ({ data }) => {
+  const { title, content, image } = data;
+
+  const parsedContent = parseSimpleRichText(content);
 
   return (
     <div className="px-4 py-5 md:px-10 md:py-15">
@@ -16,18 +20,34 @@ const Hero: React.FC<Service> = ({ title, content, image }) => {
         </h1>
       </div>
       <div className="hero-media-block flex h-[400px] flex-col rounded-3xl bg-(--hero-bg) px-5 py-6 md:flex-row">
-        <div
-          className="w-[50%] text-xl leading-[1.6em] lg:pt-6"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        ></div>
+        <div className="w-[50%] lg:pt-6">
+          {parsedContent.map((item, itemIndex) =>
+            item.type === 'list' ? (
+              <ul className="space-y-2" key={itemIndex}>
+                {item.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="flex items-start">
+                    <div className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></div>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xl leading-[1.6em]" key={itemIndex}>
+                {item.text}
+              </p>
+            )
+          )}
+        </div>
         <div className="hero-image-wrapper relative flex w-[50%] items-center justify-center md:items-start md:justify-end">
-          <Image
-            id="hero-image"
-            src={`${imgHost}${image?.url}`}
-            alt="hero image"
-            width={570}
-            height={570}
-          />
+          {image && (
+            <Image
+              id="hero-image"
+              src={`${image?.url}`}
+              alt="hero image"
+              width={570}
+              height={570}
+            />
+          )}
         </div>
       </div>
     </div>
