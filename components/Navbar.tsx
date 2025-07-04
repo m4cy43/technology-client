@@ -96,9 +96,9 @@ const Navbar = () => {
       <div
         id="mobile-menu"
         ref={menuRef}
-        className={`fixed top-0 right-0 z-99 h-fit w-full bg-(--mobile-menu) transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'} `}
+        className={`fixed top-0 right-0 z-99 h-fit min-h-fit w-full bg-(--mobile-menu) transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'} `}
       >
-        <div className="flex h-full flex-col items-end px-8 pt-6 pb-10">
+        <div className="flex flex-col items-end px-8 pt-6 pb-10">
           <button
             className="inline-block cursor-pointer"
             type="button"
