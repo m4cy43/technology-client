@@ -1,7 +1,9 @@
-import { FaInstagram } from 'react-icons/fa6';
-import { FaFacebookSquare } from 'react-icons/fa';
+import { FaFacebookSquare, FaPhone, FaInstagram } from 'react-icons/fa';
+import { MdOutlineMail } from 'react-icons/md';
+import { FiMapPin } from 'react-icons/fi';
 
 const Footer = () => {
+  const listElementStyles = 'flex flex-row items-center';
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,10 +14,25 @@ const Footer = () => {
             <h2 className="text-lg font-bold tracking-[0.8px] text-(--golden-fizz)">
               Contact us:
             </h2>
-            <ul className="flex flex-col space-x-4 py-3">
-              <li>+3800000000</li>
-              <li>+3800000000</li>
-              <li>user@gmail.com</li>
+            <ul className="flex flex-col gap-y-2 py-3">
+              <li className={listElementStyles}>
+                <FaPhone className="mr-2.5" />
+                +3800000000
+              </li>
+              <li className={listElementStyles}>
+                <MdOutlineMail className="mr-2.5" />
+                user@gmail.com
+              </li>
+              <li className={listElementStyles}>
+                <FiMapPin className="mr-2.5" />
+                <a
+                  href="https://maps.app.goo.gl/vRLQTbnhWwefz4Uu6"
+                  target="_blank"
+                  className="hover:text-(--golden-fizz)"
+                >
+                  Address
+                </a>
+              </li>
             </ul>
           </div>
           <div>
@@ -29,7 +46,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <FaFacebookSquare className="h-8 w-8" />
+                <a href="https://www.facebook.com/">
+                  <FaFacebookSquare className="h-8 w-8" />
+                </a>
               </li>
             </ul>
           </div>

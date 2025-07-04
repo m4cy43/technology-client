@@ -93,40 +93,47 @@ const Navbar = () => {
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-menu"
-          ref={menuRef}
-          className="fixed top-0 z-99 h-full w-full bg-(--mobile-menu)"
-        >
-          <div className="flex h-full flex-col items-end p-4">
-            <button
-              className="inline-block cursor-pointer"
-              type="button"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            >
-              <span className="sr-only">Close menu</span>
-              <IoMdCloseCircleOutline className="m-0 h-11 w-11 text-(--pampas)" />
-            </button>
+      <div
+        id="mobile-menu"
+        ref={menuRef}
+        className={`fixed top-0 right-0 z-99 h-fit w-full bg-(--mobile-menu) transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'} `}
+      >
+        <div className="flex h-full flex-col items-end px-8 pt-6 pb-10">
+          <button
+            className="inline-block cursor-pointer"
+            type="button"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            <span className="sr-only">Close menu</span>
+            <IoMdCloseCircleOutline className="m-0 h-12 w-12 text-(--pampas)" />
+          </button>
 
-            <nav className="pt-6.5 pr-5">
-              <ul className="flex flex-col items-end gap-y-7.5 capitalize">
-                <li className="nav-link-mobile">
-                  <a href="#about">About us</a>
-                </li>
-                <li className="nav-link-mobile">
-                  <a href="#what-we-do">What we do</a>
-                </li>
-                <li className="nav-link-mobile">
-                  <a href="#why-us">Why choose us</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          <nav className="w-full px-6 pt-5">
+            <ul className="flex w-full flex-col items-center gap-y-7.5 capitalize">
+              <li className="nav-link-mobile">
+                <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>
+                  About us
+                </a>
+              </li>
+              <li className="nav-link-mobile">
+                <a
+                  href="#what-we-do"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  What we do
+                </a>
+              </li>
+              <li className="nav-link-mobile">
+                <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)}>
+                  Why choose us
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
