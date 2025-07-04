@@ -19,7 +19,7 @@ const MainContent = () => {
     );
 
   const {
-    data: { hero, aboutUs, whatWeDo, whyChooseUs },
+    data: { hero, aboutUs, whatWeDo, whyChooseUs, closing },
   } = data!;
 
   return (
@@ -29,7 +29,7 @@ const MainContent = () => {
         <AboutUs data={aboutUs} />
         <WhatWeDo data={whatWeDo} />
         <WhyChooseUs data={whyChooseUs} />
-        <Closing />
+        <Closing data={closing} />
       </div>
     </>
   );

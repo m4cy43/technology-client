@@ -1,27 +1,47 @@
+import { parseSimpleRichText } from '@/lib/strapi-parser';
+import { Service } from '@/types/strapi';
 import Image from 'next/image';
+import { FC } from 'react';
 
-const Closing = () => {
+interface Props {
+  data: Service;
+}
+
+const Closing: FC<Props> = ({ data }) => {
+  const { title, content, image } = data;
+
+  const parsedContent = parseSimpleRichText(content);
+
   return (
     <section>
       <div className="rounded-2xl bg-white p-8 text-center shadow-xl">
         <div className="flex flex-col items-center space-y-4 text-lg text-gray-700">
-          <p>
-            We are proud to serve our clients with integrity and passion,
-            continuously evolving to meet the challenges of modern business and
-            construction.
-          </p>
+          {parsedContent.map((item, itemIndex) =>
+            item.type === 'list' ? (
+              <ul className="space-y-2" key={itemIndex}>
+                {item.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="flex items-start">
+                    <div className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></div>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p key={itemIndex}>{item.text}</p>
+            )
+          )}
           <div className="flex w-full justify-center">
-            <Image
-              className="w-[32%] min-w-[300px]"
-              src="business-deal-pana.svg"
-              alt="about us image"
-              width={484}
-              height={484}
-            />
+            {image && (
+              <Image
+                className="w-[32%] min-w-[300px]"
+                src={`${image?.url}`}
+                alt="about us image"
+                width={484}
+                height={484}
+              />
+            )}
           </div>
-          <p className="text-2xl font-semibold text-blue-600">
-            Let`s build your vision — together.
-          </p>
+          <p className="text-2xl font-semibold text-blue-600">{title}</p>
         </div>
       </div>
     </section>
